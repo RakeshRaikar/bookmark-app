@@ -140,7 +140,11 @@ export default function Dashboard() {
             >
               Delete
             </button>
-            <div className="flex justify-between items-center mb-6">
+            
+          </li>
+        ))}
+      </ul>
+      <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold">My Bookmarks</h1>
             <button
               onClick={handleLogout}
@@ -149,10 +153,6 @@ export default function Dashboard() {
               Logout
             </button>
           </div>
-
-          </li>
-        ))}
-      </ul>
     </div>
   )
 }
