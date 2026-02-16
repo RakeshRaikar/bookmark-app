@@ -13,32 +13,33 @@ export default function Dashboard() {
   const router = useRouter()
 
   // 🔐 Get logged-in user
-  useEffect(() => {
-    const getUser = async () => {
-      const { data } = await supabase.auth.getUser()
-      if (!data.user) {
-        router.push('/')
-      } else {
-        console.log("Logged in user ID:", data.user.id) // 👈 ADD THIS
-        setUser(data.user)
-      }
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     const { data } = await supabase.auth.getUser()
+  //     if (!data.user) {
+  //       router.push('/')
+  //     } else {
+  //       console.log("Logged in user ID:", data.user.id) // 👈 ADD THIS
+  //       setUser(data.user)
+  //     }
+  //   }
+  //   getUser()
+  // }, [])
+
+
+useEffect(() => {
+  const getUser = async () => {
+    const { data: { session } } = await supabase.auth.getSession()
+
+    if (!session) {
+      router.push('/')
+    } else {
+      setUser(session.user)
     }
-    getUser()
-  }, [])
+  }
 
-//   // 📥 Fetch bookmarks
-//     const fetchBookmarks = async () => {
-//     if (!user) return
-
-//     const { data } = await supabase
-//         .from('bookmarks')
-//         .select('*')
-//         .eq('user_id', user.id)   // ✅ filter by user
-//         .order('created_at', { ascending: false })
-
-//     setBookmarks(data || [])
-//     }
-
+  getUser()
+}, [])
 
   // ➕ Add bookmark
   const addBookmark = async () => {
