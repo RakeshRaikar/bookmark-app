@@ -112,20 +112,23 @@ export default function Dashboard() {
   }, [user])
 
   return (
-    <div className="p-10 max-w-xl mx-auto">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    
 
       {/* 🔥 Header with Logout */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">My Bookmarks</h1>
+       {/* Center Box */}
+    <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-xl relative">
+      
+        <h1 className="text-2xl font-bold mb-6 text-center">My Bookmarks</h1>
         <button
           onClick={handleLogout}
-          className="bg-red-500 text-white px-4 py-2 rounded"
+           className="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded"
         >
           Logout
         </button>
       </div>
 
-      <div className="flex flex-col gap-3 mb-6">
+       <div className="flex flex-col gap-3 mb-6">
         <input
           type="text"
           placeholder="Title"
@@ -154,8 +157,9 @@ export default function Dashboard() {
             key={bookmark.id}
             className="flex justify-between items-center border p-3 rounded"
           >
-            <a href={bookmark.url} target="_blank">
+            <a href={bookmark.url} target="_blank"  className="text-blue-600 hover:underline">
               {bookmark.title}
+              
             </a>
             <button
               onClick={() => deleteBookmark(bookmark.id)}
